@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rabbit:
+    image: rabbitmq:management
+    container_name: simple-spring-cloud-stream.rabbitmq
+    volumes:
+      - ./config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./config/rabbitmq-definitions.json:/opt/definitions.json:ro
+    ports:
+      - '15672:15672'
+      - '5672:5672'

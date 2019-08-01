@@ -1,0 +1,74 @@
+{
+  "rabbit_version": "3.7.8",
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "2rD5k9vIekVNJalMjz3Vg7TEIxJDlsQjwXm9aOnhloNL97so",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    },
+    {
+      "name": "/simple-spring-cloud-stream"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "guest",
+      "vhost": "/simple-spring-cloud-stream",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [
+    {
+      "name": "cluster_name",
+      "value": "rabbit@b85a55504ccd"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "name": "simple_message_queue",
+      "vhost": "/simple-spring-cloud-stream",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "simple_message_exchange",
+      "vhost": "/simple-spring-cloud-stream",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "simple_message_exchange",
+      "vhost": "/simple-spring-cloud-stream",
+      "destination": "simple_message_queue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    }
+  ]
+}
