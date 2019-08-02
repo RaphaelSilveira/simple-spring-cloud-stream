@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    stream:
+      binders:
+        rabbit:
+          type: 'rabbit'
+          environment:
+            spring:
+              rabbitmq:
+                addresses: 'localhost:5672'
+                username: 'guest'
+                password: 'guest'
+                virtual-host: '/simple-spring-cloud-stream'
+      bindings:
+        simple-stream-rabbit:
+          binder: 'rabbit'
+          destination: 'simple_message_exchange'
+          group: 'simple_message_queue'
+          consumer:
+            max-attempts: 5
+            concurrency: 1
+      rabbit:
+        bindings:
+          simple-stream-rabbit:
+            consumer:
+              bind-queue: true
+              declare-exchange: true
+              queue-name-group-only: true
+              exchange-type: fanout
+
